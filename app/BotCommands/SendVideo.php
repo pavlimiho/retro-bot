@@ -3,18 +3,20 @@
 namespace App\BotCommands;
 
 use Discord\DiscordCommandClient;
-use Discord\Parts\Channel\Message;
+use Discord\Parts\Channel\Message as DiscordMessage;
 
-class Hello extends Command
+class SendVideo extends Command
 {
+    protected $videoUrl;
+    
     /**
      * Init the command
      * 
-     * @param Message $message
+     * @param DiscordMessage $message
      * @param DiscordCommandClient $discord
      * @return void
      */
-    public function __construct(Message $message, DiscordCommandClient $discord) 
+    public function __construct(DiscordMessage $message, DiscordCommandClient $discord) 
     {
         parent::__construct($message, $discord);
         
@@ -28,6 +30,6 @@ class Hello extends Command
      */
     public function run() 
     {
-        $this->reply('Hello! How are you?');
+        $this->info($this->emoji('kekw') . ' ' . $this->videoUrl);
     }
 }

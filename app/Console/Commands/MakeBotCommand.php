@@ -77,7 +77,7 @@ class MakeBotCommand extends GeneratorCommand
         
         $this->info($this->type . ' created successfully.');
         
-        $this->line('<info>Created Bot Command:</info>' . $this->className);
+        $this->line('<info>Created Bot Command:</info> ' . $this->className);
     }
     
     /**
@@ -87,7 +87,7 @@ class MakeBotCommand extends GeneratorCommand
      */
     private function setCommandClass()
     {
-        $name = ucwords(strtolower($this->argument('name')));
+        $name = ucwords($this->argument('name'));
 
         $this->className = $name;
 

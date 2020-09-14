@@ -5,14 +5,14 @@ namespace App\BotCommands;
 use Discord\DiscordCommandClient;
 use Discord\Parts\Channel\Message as DiscordMessage;
 
-class Rob extends SendVideo
+class Rap extends SendVideo
 {
     /**
      * The "Seth" video url
      * 
      * @var string 
      */
-    protected $videoUrl = 'https://www.youtube.com/watch?v=w7yF8zpGrHQ';
+    protected $videoUrl = 'https://www.youtube.com/watch?v=4BQrav8uJpE';
     
     /**
      * Init the command

@@ -6,7 +6,7 @@ use Discord\DiscordCommandClient;
 use Discord\Parts\Channel\Message as DiscordMessage;
 use Illuminate\Console\Command;
 
-class BotRun extends Command
+class StartBot extends Command
 {
     /**
      * The name and signature of the console command.

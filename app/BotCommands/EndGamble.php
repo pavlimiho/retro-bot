@@ -6,7 +6,7 @@ use App\Facades\Session;
 use App\Models\Gamble as GambleModel;
 use App\Models\Member;
 use Discord\DiscordCommandClient;
-use Discord\Parts\Channel\Message;
+use Discord\Parts\Channel\Message as DiscordMessage;
 
 class EndGamble extends Gamble
 {
@@ -34,11 +34,11 @@ class EndGamble extends Gamble
     /**
      * Init the command
      * 
-     * @param Message $message
+     * @param DiscordMessage $message
      * @param DiscordCommandClient $discord
      * @return void
      */
-    public function __construct(Message $message, DiscordCommandClient $discord) 
+    public function __construct(DiscordMessage $message, DiscordCommandClient $discord) 
     {
         Command::__construct($message, $discord);
         

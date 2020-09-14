@@ -5,7 +5,7 @@ namespace App\BotCommands;
 use App\Models\Member;
 use App\Traits\Emojis;
 use Discord\DiscordCommandClient;
-use Discord\Parts\Channel\Message;
+use Discord\Parts\Channel\Message as DiscordMessage;
 
 class Command 
 {
@@ -14,7 +14,7 @@ class Command
     /**
      * Contains the discord message object
      * 
-     * @var Message object 
+     * @var DiscordMessage object 
      */
     protected $message;
     
@@ -91,9 +91,9 @@ class Command
     /**
      * Load the discord message object
      * 
-     * @param Message $message
+     * @param DiscordMessage $message
      */
-    protected function __construct(Message $message, DiscordCommandClient $discord) 
+    protected function __construct(DiscordMessage $message, DiscordCommandClient $discord) 
     {
         $this->message = $message;
         $this->discord = $discord;

@@ -4,7 +4,7 @@ namespace App\BotCommands;
 
 use App\Facades\Session;
 use Discord\DiscordCommandClient;
-use Discord\Parts\Channel\Message;
+use Discord\Parts\Channel\Message as DiscordMessage;
 
 class Roll extends Gamble
 {
@@ -18,11 +18,11 @@ class Roll extends Gamble
     /**
      * Init the command
      * 
-     * @param Message $message
+     * @param DiscordMessage $message
      * @param DiscordCommandClient $discord
      * @return void
      */
-    public function __construct(Message $message, DiscordCommandClient $discord) 
+    public function __construct(DiscordMessage $message, DiscordCommandClient $discord) 
     {
         Command::__construct($message, $discord);
         

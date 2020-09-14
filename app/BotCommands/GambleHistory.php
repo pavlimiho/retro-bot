@@ -4,18 +4,18 @@ namespace App\BotCommands;
 
 use App\Models\Member;
 use Discord\DiscordCommandClient;
-use Discord\Parts\Channel\Message;
+use Discord\Parts\Channel\Message as DiscordMessage;
 
 class GambleHistory extends Command
 {
     /**
      * Init the command
      * 
-     * @param Message $message
+     * @param DiscordMessage $message
      * @param DiscordCommandClient $discord
      * @return void
      */
-    public function __construct(Message $message, DiscordCommandClient $discord) 
+    public function __construct(DiscordMessage $message, DiscordCommandClient $discord) 
     {
         parent::__construct($message, $discord);
         
