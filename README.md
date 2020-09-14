@@ -8,6 +8,11 @@ Retro-bot is a discord bot built in php
 - Easy to add new commands
 - Fun commands to have a good time with your friends
 
+## Dependencies
+
+- Retro bot is built on top of [DiscordPHP] (https://github.com/teamreflex/DiscordPHP)
+- Retro bot uses the php framework laravel version 7.x
+
 ## Installation
 
 Retro-bot requires [Composer](https://getcomposer.org). Make sure you have installed Composer and are used to how it operates. We require a minimum PHP version of PHP 7.2.
