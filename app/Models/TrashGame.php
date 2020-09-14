@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class TrashGame extends Model
 {
+    protected $fillable = [
+        'name', 'code'
+    ];
+
     /**
      * Set relationship with members
      * 
