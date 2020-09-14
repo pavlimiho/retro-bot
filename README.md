@@ -29,7 +29,9 @@ Retro-bot requires [Composer](https://getcomposer.org). Make sure you have insta
 
 In order to add a new command you must register it first in the config/botCommands.php file.
 
-Then you can build it's functionality by creating a new class inside app/BotCommands. This class MUST extend the Command class found in the same namespace.
+Then you can create a new bot command class with the following command:
+
+<i>php artisan make:bot-command</i>
 
 ## Starting the bot
 
