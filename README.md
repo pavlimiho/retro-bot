@@ -25,7 +25,17 @@ Retro-bot requires [Composer](https://getcomposer.org). Make sure you have insta
 
 4. Run php artisan migrate --seed to build and seed the database.
 
-5. Run php artisan bot:run to initialize the bot.
+## Adding new commands
+
+In order to add a new command you must register it first in the config/botCommands.php file.
+
+Then you can build it's functionality by creating a new class inside app/BotCommands. This class MUST extend the Command class found in the same namespace.
+
+## Starting the bot
+
+To initialize the bot run the following command from inside the retro-bot directory:
+
+php artisan bot:run to initialize the bot.
 
 ## License
 
