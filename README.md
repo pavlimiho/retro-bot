@@ -25,7 +25,7 @@ Retro-bot requires [Composer](https://getcomposer.org). Make sure you have insta
 
 4. Run php artisan migrate --seed to build and seed the database.
 
-4. Run php artisan bot:run to initialize the bot.
+5. Run php artisan bot:run to initialize the bot.
 
 ## License
 
