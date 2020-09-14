@@ -17,13 +17,13 @@ Retro-bot is a discord bot built in php
 
 Retro-bot requires [Composer](https://getcomposer.org). Make sure you have installed Composer and are used to how it operates. We require a minimum PHP version of PHP 7.2.
 
-1. Clone the code from our repository: git clone https://github.com/pavlimiho/retro-bot.git
+1. Clone the code from our repository: <code>git clone https://github.com/pavlimiho/retro-bot.git</code>
 
 2. Move into the retro-bot folder and create a .env file. You can copy .env.example as a placeholder.
 
-3. Run composer install to get all the dependecies.
+3. Run <code>composer install</code> to get all the dependecies.
 
-4. Run php artisan migrate --seed to build and seed the database.
+4. Run <code>php artisan migrate --seed</code> to build and seed the database.
 
 ## Adding new commands
 
@@ -31,13 +31,13 @@ In order to add a new command you must register it first in the config/botComman
 
 Then you can create a new bot command class with the following command:
 
-<i>php artisan make:bot-command</i>
+<code>php artisan make:bot-command</code>
 
 ## Starting the bot
 
 To initialize the bot run the following command from inside the retro-bot directory:
 
-php artisan bot:start
+<code>php artisan bot:start</code>
 
 ## License
 
