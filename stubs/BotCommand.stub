@@ -1,0 +1,53 @@
+<?php
+
+namespace App\BotCommands;
+
+use Discord\DiscordCommandClient;
+use Discord\Parts\Channel\Message as DiscordMessage;
+
+class {{ class }} extends Command
+{
+    /**
+     * Init the command
+     * 
+     * @param DiscordMessage $message
+     * @param DiscordCommandClient $discord
+     * @return void
+     */
+    public function __construct(DiscordMessage $message, DiscordCommandClient $discord) 
+    {
+        parent::__construct($message, $discord);
+        
+        $this->run();
+    }
+    
+    /**
+     * Run the command
+     * 
+     * @return void
+     */
+    public function run() 
+    {
+        // do some cool stuff
+    }
+    
+    /**
+     * Check if the command has errors
+     * 
+     * @return boolean
+     */
+    public function hasError() 
+    {
+        // put your error logic here
+    }
+    
+    /**
+     * Send an error message
+     * 
+     * @return void
+     */
+    public function sendError() 
+    {
+        // send your error messages here
+    }
+}
