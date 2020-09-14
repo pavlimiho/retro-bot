@@ -35,7 +35,7 @@ Then you can build it's functionality by creating a new class inside app/BotComm
 
 To initialize the bot run the following command from inside the retro-bot directory:
 
-php artisan bot:run to initialize the bot.
+php artisan bot:run
 
 ## License
 
