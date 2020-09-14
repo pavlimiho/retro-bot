@@ -13,7 +13,7 @@ class BotRun extends Command
      *
      * @var string
      */
-    protected $signature = 'bot:run';
+    protected $signature = 'bot:start';
 
     /**
      * The console command description.
