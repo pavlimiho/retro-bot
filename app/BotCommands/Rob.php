@@ -8,7 +8,7 @@ use Discord\Parts\Channel\Message as DiscordMessage;
 class Rob extends SendVideo
 {
     /**
-     * The "Seth" video url
+     * The video url
      * 
      * @var string 
      */

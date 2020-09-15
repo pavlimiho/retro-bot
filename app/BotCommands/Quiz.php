@@ -8,7 +8,7 @@ use Discord\Parts\Channel\Message as DiscordMessage;
 class Quiz extends SendVideo
 {
     /**
-     * The "Seth" video url
+     * The video url
      * 
      * @var string 
      */

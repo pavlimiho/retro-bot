@@ -8,7 +8,7 @@ use Discord\Parts\Channel\Message as DiscordMessage;
 class Ripcord extends Command
 {
     /**
-     * The "Ripcord" video url
+     * The video url
      * 
      * @var string 
      */

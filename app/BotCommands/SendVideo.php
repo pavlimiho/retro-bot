@@ -7,6 +7,11 @@ use Discord\Parts\Channel\Message as DiscordMessage;
 
 class SendVideo extends Command
 {
+    /**
+     * The video url
+     * 
+     * @var string 
+     */
     protected $videoUrl;
     
     /**
