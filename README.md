@@ -21,7 +21,7 @@ Retro-bot requires [Composer](https://getcomposer.org). Make sure you have insta
 
 2. Run <code>composer install</code> to get all the dependecies.
 
-3. Move into the retro-bot folder and create a .env file. You can copy .env.example as a placeholder.
+3. Move into the retro-bot folder and create a <code>.env</code> file. You can copy <code>.env.example</code> as a placeholder.
 
 4. Generate the application key with: <code>php artisan key:generate</code>
 
