@@ -43,4 +43,4 @@ To initialize the bot run the following command from inside the retro-bot direct
 
 ## License
 
-Retro-bot is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Retro-bot is open-sourced software licensed under the [MIT license](https://github.com/pavlimiho/retro-bot/blob/master/LICENSE).
