@@ -28,7 +28,7 @@ class Fun extends Command
         'Me and Jack are like fire and water',
         'Have you tried logging into another character?',
         'Headphones will make you go bald',
-        'If we get top 20 Silvermoon, I will buy everyone a longboi',
+        'If we get top 20 Silvermoon, I will buy every raider a longboi',
     ];
 
 
