@@ -349,24 +349,37 @@ class Command
     }
     
     /**
+     * Check if message has mentions
+     * 
+     * @param string $mention
+     * @return boolean
+     */
+    protected function hasMentions()
+    {
+        return $this->message->mentions->count() > 0 ? true : false;
+    }
+
+    /**
      * Save mentioned member
      * 
      * @param string $mention
      * @return Member
      */
-    protected function saveMentionedMember($mention) 
+    protected function saveMentionedMembers() 
     {
-        $memberId = $this->getMemberIdFromMention($mention);
+        $memberIds = [];
         
-        $member = Member::where('member_id', $memberId)->get();
-        
-        if ($member->count() === 0) {
-            return Member::create([
-                'member_id' => $memberId
-            ]);
-        } else {
-            return $member->first();
+        foreach ($this->message->mentions as $mention) {
+            if (Member::where('member_id', $mention->id)->count() === 0) {
+                $memberIds[] = Member::create([
+                    'member_id' => $mention->id,
+                    'name' => $mention->username,
+                    'discriminator' => $mention->discriminator
+                ])->id;
+            }
         }
+        
+        return Member::whereIn('id', $memberIds)->get();
     }
     
     /**

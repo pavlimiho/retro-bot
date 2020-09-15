@@ -81,11 +81,18 @@ class Au extends Command
      */
     public function addAuPlayer()
     {
-        $member = $this->saveMentionedMember($this->params[1]);
+        $members = $this->saveMentionedMembers();
         
-        $member->trashGames()->sync(TrashGame::where('code', $this->auCode)->first());
-        
-        $this->reply($this->mention($member) . ' has been added to the AU group');
+        if($members->count() > 0) {
+            $mentions = '';
+            
+            foreach ($members as $member) {
+                $member->trashGames()->sync(TrashGame::where('code', $this->auCode)->first());
+                $mentions .= $this->mention($member);
+            }
+            
+            $this->reply($mentions . ' has been added to the AU group');
+        }
     }
     
     /**
@@ -95,7 +102,7 @@ class Au extends Command
      */
     public function hasError() 
     {
-        if ($this->hasParams && $this->params[0] === 'add' && !$this->isMention($this->params[1])) {
+        if ($this->hasParams && $this->params[0] === 'add' && !$this->hasMentions()) {
             $this->error = 'no_mention';
             return true;
         } else {
