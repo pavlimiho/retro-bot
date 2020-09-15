@@ -35,6 +35,8 @@ Then you can create a new bot command class with the following command:
 
 <code>php artisan make:bot-command</code>
 
+This will create a new bot command class inside the folder <code>app/BotCommands</code>.
+
 ## Starting the bot
 
 To initialize the bot run the following command from inside the retro-bot directory:
