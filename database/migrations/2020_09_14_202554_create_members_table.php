@@ -16,8 +16,8 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('member_id');
-            $table->string('name')->nullable();
-            $table->string('discriminator')->nullable();
+            $table->string('name');
+            $table->string('discriminator');
             $table->timestamps();
         });
     }
