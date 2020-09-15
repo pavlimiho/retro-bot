@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
+    protected $fillable = [
+        'member_id', 'name', 'discriminator'
+    ];
+    
     /**
      * Set relationship with won gambles
      * 

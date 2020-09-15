@@ -99,13 +99,13 @@ class EndGamble extends Gamble
     {
         $gamble = Session::get('gamble');
         
-        $gambleModel = new GambleModel();
-        $gambleModel->starter_id = Member::where('member_id', $gamble['starter']->id)->first()->id;
-        $gambleModel->amount = $gamble['amount'];
-        $gambleModel->winner_id = Member::where('member_id', $this->winner->id)->first()->id;
-        $gambleModel->loser_id = Member::where('member_id', $this->loser->id)->first()->id;
-        $gambleModel->amount_won = $this->diff;
-        $gambleModel->save();
+        GambleModel::create([
+            'starter_id' => Member::where('member_id', $gamble['starter']->id)->first()->id,
+            'amount' => $gamble['amount'],
+            'winner_id' => Member::where('member_id', $this->winner->id)->first()->id,
+            'loser_id' => Member::where('member_id', $this->loser->id)->first()->id,
+            'amount_won' => $this->diff
+        ]);
     }
     
     /**

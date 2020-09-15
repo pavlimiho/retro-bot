@@ -310,11 +310,11 @@ class Command
     protected function saveAuthor() 
     {
         if (Member::where('member_id', $this->author->id)->count() === 0) {
-            $member = new Member();
-            $member->member_id = $this->author->id;
-            $member->name = $this->author->username;
-            $member->discriminator = $this->author->discriminator;
-            $member->save();
+            Member::create([
+                'member_id' => $this->author->id,
+                'name' => $this->author->username,
+                'discriminator' => $this->author->discriminator
+            ]);
         }
     }
     
@@ -361,11 +361,9 @@ class Command
         $member = Member::where('member_id', $memberId)->get();
         
         if ($member->count() === 0) {
-            $newMember = new Member();
-            $newMember->member_id = $memberId;
-            $newMember->save();
-            
-            return $newMember;
+            return Member::create([
+                'member_id' => $memberId
+            ]);
         } else {
             return $member->first();
         }

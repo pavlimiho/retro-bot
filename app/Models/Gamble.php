@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gamble extends Model
 {
+    protected $fillable = [
+        'starter_id', 'amount', 'winner_id', 'loser_id', 'amount_won'
+    ];
+
     /**
      * Set relationship with winner
      * 
