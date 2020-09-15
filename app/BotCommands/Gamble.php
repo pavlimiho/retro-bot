@@ -2,7 +2,7 @@
 
 namespace App\BotCommands;
 
-use App\Facades\Session;
+use Illuminate\Support\Facades\Session;
 use Discord\DiscordCommandClient;
 use Discord\Parts\Channel\Message as DiscordMessage;
 
@@ -53,7 +53,7 @@ class Gamble extends Command
         if ($this->validate()) {
             $this->setAmount();
             
-            Session::set('gamble', [
+            Session::put('gamble', [
                 'amount' => $this->amount,
                 'starter' => $this->author,
                 'gamblers' => [],
@@ -133,7 +133,7 @@ class Gamble extends Command
      */
     public function gamblingInSession() 
     {
-        if (Session::missing('gamble')) {
+        if (!Session::exists('gamble')) {
             return false;
         }
         
@@ -153,7 +153,7 @@ class Gamble extends Command
         if (strtotime(date('Y-m-d H:i:s')) - strtotime($gamble['start']) <= $this->lifespan) {
             return false;
         } else {
-            Session::unset('gamble');
+            Session::forget('gamble');
             return true;
         }
     }

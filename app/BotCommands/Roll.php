@@ -2,7 +2,7 @@
 
 namespace App\BotCommands;
 
-use App\Facades\Session;
+use Illuminate\Support\Facades\Session;
 use Discord\DiscordCommandClient;
 use Discord\Parts\Channel\Message as DiscordMessage;
 
@@ -79,7 +79,7 @@ class Roll extends Gamble
             'author' => $this->author,
             'roll' => $this->roll
         ];
-        Session::set('gamble', $gamble);
+        Session::put('gamble', $gamble);
     }
     
     /**

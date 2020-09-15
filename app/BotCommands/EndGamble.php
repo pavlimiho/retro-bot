@@ -2,7 +2,7 @@
 
 namespace App\BotCommands;
 
-use App\Facades\Session;
+use Illuminate\Support\Facades\Session;
 use App\Models\Gamble as GambleModel;
 use App\Models\Member;
 use Discord\DiscordCommandClient;
@@ -55,7 +55,7 @@ class EndGamble extends Gamble
         if ($this->validate()) {
             $this->getResults();
             $this->saveGamble();
-            Session::unset('gamble');
+            Session::forget('gamble');
             
             $this->info('Gambling results:' . PHP_EOL
                 . $this->emoji('star') . ' Winner ' . $this->emoji('star') . ' ' . $this->winner . PHP_EOL
@@ -125,7 +125,7 @@ class EndGamble extends Gamble
             return true;
         } elseif (count($gamble['gamblers']) < 2) {
             $this->error = 'no_rolls';
-            Session::unset('gamble');
+            Session::forget('gamble');
             return true;
         } else {
             return false;
