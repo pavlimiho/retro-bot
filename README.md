@@ -33,7 +33,7 @@ In order to add a new command you must register it first in the <code>config/bot
 
 Then you can create a new bot command class with the following command:
 
-<code>php artisan make:bot-command</code>
+<code>php artisan make:bot-command YourCommandName</code>
 
 This will create a new bot command class inside the folder <code>app/BotCommands</code>.
 
