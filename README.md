@@ -29,7 +29,7 @@ Retro-bot requires [Composer](https://getcomposer.org). Make sure you have insta
 
 ## Adding new commands
 
-In order to add a new command you must register it first in the config/botCommands.php file.
+In order to add a new command you must register it first in the <code>config/botCommands.php</code> file.
 
 Then you can create a new bot command class with the following command:
 
