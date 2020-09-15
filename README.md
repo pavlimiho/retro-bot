@@ -21,9 +21,11 @@ Retro-bot requires [Composer](https://getcomposer.org). Make sure you have insta
 
 2. Move into the retro-bot folder and create a .env file. You can copy .env.example as a placeholder.
 
-3. Run <code>composer install</code> to get all the dependecies.
+3. Generate the application key with: <code>php artisan key:generate</code>
 
-4. Run <code>php artisan migrate --seed</code> to build and seed the database.
+4. Run <code>composer install</code> to get all the dependecies.
+
+5. Run <code>php artisan migrate --seed</code> to build and seed the database.
 
 ## Adding new commands
 
