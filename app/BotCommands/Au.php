@@ -125,7 +125,7 @@ class Au extends Command
      */
     public function hasError() 
     {
-        if ($this->hasParams && $this->params[0] === 'add' && !$this->hasMentions()) {
+        if ($this->hasParams && ($this->params[0] === 'add' || $this->params[0] === 'remove') && !$this->hasMentions()) {
             $this->error = 'no_mention';
             return true;
         } else {
