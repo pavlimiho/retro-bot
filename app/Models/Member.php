@@ -37,6 +37,6 @@ class Member extends Model
      */
     public function trashGames() 
     {
-        return $this->belongsToMany(TrashGame::class);
+        return $this->belongsToMany(TrashGame::class)->withTimestamps();
     }
 }
