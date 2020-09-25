@@ -36,6 +36,8 @@ class Au extends Command
         if ($this->validate()) {
             if ($this->hasParams && $this->params[0] === 'add') {
                 $this->addAuPlayer();
+            } else if ($this->hasParams && $this->params[0] === 'remove') {
+                $this->removeAuPlayer();
             } elseif (!$this->hasParams) {
                 $this->mentionAuPlayers();
             }
@@ -75,7 +77,7 @@ class Au extends Command
     }
     
     /**
-     * Register a new au player
+     * Register a new au players
      * 
      * @return void
      */
@@ -92,6 +94,27 @@ class Au extends Command
             }
             
             $this->reply($mentions . ' has been added to the AU group');
+        }
+    }
+    
+    /**
+     * Remove au players
+     * 
+     * @return void
+     */
+    public function removeAuPlayer()
+    {
+        $members = $this->saveMentionedMembers();
+        
+        if($members->count() > 0) {
+            $mentions = '';
+            
+            foreach ($members as $member) {
+                $member->trashGames()->detach(TrashGame::where('code', $this->auCode)->first());
+                $mentions .= $this->mention($member);
+            }
+            
+            $this->reply($mentions . ' has been removed from the AU group');
         }
     }
     
