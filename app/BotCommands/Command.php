@@ -376,6 +376,8 @@ class Command
                     'name' => $mention->username,
                     'discriminator' => $mention->discriminator
                 ])->id;
+            } else {
+                $memberIds[] = Member::where('member_id', $mention->id)->first()->id;
             }
         }
         
