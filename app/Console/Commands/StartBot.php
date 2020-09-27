@@ -54,7 +54,8 @@ class StartBot extends Command
         
         $this->discord = new DiscordCommandClient([
             'token' => env('TOKEN'),
-            'prefix' => $this->commandPrefix
+            'prefix' => $this->commandPrefix,
+            'description' => 'A fun bot for Retro-Silvermoon guild'
         ]);
     }
 
@@ -80,7 +81,10 @@ class StartBot extends Command
         foreach (config('botCommands') as $command) {
             $this->discord->registerCommand(str_replace('_', '', $command['name']), function (DiscordMessage $message) use ($command) {
                 $this->initiateCommand($command);
-            }, ['description' => $command['description']]);
+            }, [
+                'description' => $command['description'],
+                'usage' => $command['usage']
+            ]);
         }
     }
     

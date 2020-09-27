@@ -77,6 +77,7 @@ return [
     [
         'name' => 'fight',
         'description' => 'Fight your nemesis',
+        'usage' => '!fight <@Retro-bot>',
         'active' => false
     ]
 ];
