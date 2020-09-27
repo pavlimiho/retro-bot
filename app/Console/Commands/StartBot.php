@@ -81,7 +81,7 @@ class StartBot extends Command
             $this->discord->registerCommand(str_replace('_', '', $command['name']), function (DiscordMessage $message) use ($command) {
                 $comandClassName = $this->getCommandClassName($command['name']);
                 new $comandClassName($message, $this->discord);
-            }, ['description' => $command->description]);
+            }, ['description' => $command['description']]);
         }
     }
     
