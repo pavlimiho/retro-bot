@@ -76,14 +76,7 @@ return [
     // Alex commands not built on this bot, using this only for the description
     [
         'name' => 'fight',
-        'description' => 'Description:' . PHP_EOL, 
-                        'Fight your nemesis' . PHP_EOL
-                        . PHP_EOL
-                        . 'Usage:' . PHP_EOL
-                        . '!fight @Retro-bot'
-                        . PHP_EOL
-                        . 'Arguments:' . PHP_EOL
-                        . 'opponent',
+        'description' => 'Fight your nemesis',
         'active' => false
     ]
 ];
