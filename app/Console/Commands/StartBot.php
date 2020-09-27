@@ -79,8 +79,7 @@ class StartBot extends Command
     {
         foreach (config('botCommands') as $command) {
             $this->discord->registerCommand(str_replace('_', '', $command['name']), function (DiscordMessage $message) use ($command) {
-                $comandClassName = $this->getCommandClassName($command['name']);
-                new $comandClassName($message, $this->discord);
+                $this->runCommand($command);
             }, ['description' => $command['description']]);
         }
     }
@@ -102,5 +101,19 @@ class StartBot extends Command
         }
         
         return $comandClassName;
+    }
+    
+    /**
+     * Runs the command
+     * 
+     * @param array $command
+     * @return void
+     */
+    public function runCommand(array $command) 
+    {
+        if ($command['active']) {
+            $comandClassName = $this->getCommandClassName($command['name']);
+            new $comandClassName($message, $this->discord);
+        }
     }
 }
