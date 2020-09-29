@@ -80,7 +80,7 @@ class StartBot extends Command
     {
         foreach (config('botCommands') as $command) {
             $this->discord->registerCommand(str_replace('_', '', $command['name']), function (DiscordMessage $message) use ($command) {
-                $this->initiateCommand($command);
+                $this->initiateCommand($command, $message);
             }, [
                 'description' => $command['description'],
                 'usage' => $command['usage']
@@ -113,7 +113,7 @@ class StartBot extends Command
      * @param array $command
      * @return void
      */
-    public function initiateCommand(array $command) 
+    public function initiateCommand(array $command, DiscordMessage $message) 
     {
         if ($command['active']) {
             $comandClassName = $this->getCommandClassName($command['name']);
