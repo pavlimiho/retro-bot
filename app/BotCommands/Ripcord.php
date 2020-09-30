@@ -12,7 +12,7 @@ class Ripcord extends Command
      * 
      * @var string 
      */
-    protected $videoUrl = 'https://twitter.com/_SWofficial/status/1297265974132068353';
+    protected $videoUrl = 'https://www.youtube.com/watch?v=uoCsRoO31rg';
     
     /**
      * Init the command
