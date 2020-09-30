@@ -5,7 +5,7 @@ namespace App\BotCommands;
 use Discord\DiscordCommandClient;
 use Discord\Parts\Channel\Message as DiscordMessage;
 
-class Ripcord extends Command
+class Ripcord extends SendVideo
 {
     /**
      * The video url
