@@ -79,11 +79,16 @@ class StartBot extends Command
     public function registerCommands() 
     {
         foreach (config('botCommands') as $command) {
+            if (!isset($command['aliases'])) {
+                $command['aliases'] = [];
+            }
+            
             $this->discord->registerCommand(str_replace('_', '', $command['name']), function (DiscordMessage $message) use ($command) {
                 $this->initiateCommand($command, $message);
             }, [
                 'description' => $command['description'],
-                'usage' => $command['usage']
+                'usage' => $command['usage'],
+                'aliases' => $command['aliases']
             ]);
         }
     }

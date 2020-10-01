@@ -51,7 +51,8 @@ return [
         'name' => 'rob',
         'description' => 'Link the Robs sick dodging skills video',
         'usage' => '!rob',
-        'active' => true
+        'active' => true,
+        'aliases' => ['Rib']
     ],
     [
         'name' => 'rap',
