@@ -52,7 +52,7 @@ return [
         'description' => 'Link the Robs sick dodging skills video',
         'usage' => '!rob',
         'active' => true,
-        'aliases' => ['Rib']
+        'aliases' => ['rib']
     ],
     [
         'name' => 'rap',
