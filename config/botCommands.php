@@ -88,34 +88,5 @@ return [
     ],
 
     // Alex commands not built on this bot, using this only for the description
-    [
-        'name' => 'fight',
-        'description' => 'Fight your nemesis',
-        'usage' => '!fight <opponent>',
-        'active' => false
-    ],
-    [
-        'name' => 'addgame',
-        'description' => 'Adds a new game to the database',
-        'usage' => '!addgame [game name]',
-        'active' => false
-    ],
-    [
-        'name' => 'addgamers',
-        'description' => 'Adds users to a game',
-        'usage' => '!addgamers [game name] @user1 @user2 @user3',
-        'active' => false
-    ],
-    [
-        'name' => 'lfm',
-        'description' => 'Starts a gaming event',
-        'usage' => '!lfm [game name] [time]',
-        'active' => false
-    ],
-    [
-        'name' => 'seticon',
-        'description' => 'Adds an icon to a game',
-        'usage' => '!seticon [game name] url',
-        'active' => false
-    ],
+    
 ];
