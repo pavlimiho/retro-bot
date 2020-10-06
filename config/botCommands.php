@@ -80,12 +80,12 @@ return [
         'usage' => '!fun',
         'active' => true
     ],
-    [
-        'name' => 'au',
-        'description' => 'Ping all au gamers',
-        'usage' => '!au',
-        'active' => true
-    ],
+//    [
+//        'name' => 'au',
+//        'description' => 'Ping all au gamers',
+//        'usage' => '!au',
+//        'active' => true
+//    ],
 
     // Alex commands not built on this bot, using this only for the description
     [
