@@ -87,7 +87,7 @@ return [
 //        'active' => true
 //    ],
 
-    // Alex commands not built on this bot, using this only for the description
+    // Alex commands not built on this bot, using this only for the help command
     [
         'name' => 'fight',
         'description' => 'Fight your nemesis',
