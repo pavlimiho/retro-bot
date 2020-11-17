@@ -37,7 +37,7 @@ class Command
      * 
      * @var array 
      */
-    protected $roles;
+    protected $roles = [];
     
     /**
      * The officer role
@@ -131,11 +131,13 @@ class Command
      */
     private function setRoles()
     {
-        foreach ($this->message->author->roles as $role) {
-            $this->roles[] = $role->name;
+        if (isset($this->message->author->roles)) {
+            foreach ($this->message->author->roles as $role) {
+                $this->roles[] = $role->name;
+            }
         }
     }
-    
+        
     /**
      * Check if the author is an officer
      * 
