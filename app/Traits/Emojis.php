@@ -10,7 +10,7 @@ trait Emojis
      * @var array 
      */
     private $emojis = [
-        'kekw' => '<:kekw:620973601214169116>',
+        'kekw' => '<:kekw:626411240012644403>',
         'pepega' => '<:pepega:591965438666342413>',
         'peeporetard' => '<:peeporetard:606136059075756045>',
         'ricardo' => '<:ricardo:618109415450607628>',
