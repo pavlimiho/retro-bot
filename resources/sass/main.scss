@@ -1,0 +1,11 @@
+#landing,
+.bg-landing {
+    background-image: url("/images/shadowlands_shattered_sky.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.bg-dark-50 {
+    background-color: rgba(52, 58, 64, 0.5);
+}
