@@ -26,3 +26,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/lootsheet', [\App\Http\Controllers\LootSheetController::class, 'index'])->name('lootsheet');
+
+Route::middleware('auth')->group(function () {
+    Route::resource('users', UserController::class);
+    
+    Route::resource('members', MemberController::class);
+});
