@@ -16,6 +16,7 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
+        "spatie/laravel-permission": "^5.5",
         "team-reflex/discord-php": "^6.0"
     },
     "require-dev": {
