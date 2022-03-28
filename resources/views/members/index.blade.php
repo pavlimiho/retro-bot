@@ -14,9 +14,9 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td>{{ __('Name') }}</td>
-                        <td>{{ __('Class') }}</td>
-                        <td></td>
+                        <th>{{ __('Name') }}</th>
+                        <th>{{ __('Class') }}</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

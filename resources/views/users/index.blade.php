@@ -10,8 +10,8 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td>{{ __('Name') }}</td>
-                        <td></td>
+                        <th>{{ __('Name') }}</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

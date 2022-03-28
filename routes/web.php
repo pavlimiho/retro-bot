@@ -26,6 +26,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/lootsheet', [\App\Http\Controllers\LootSheetController::class, 'index'])->name('lootsheet');
+Route::post('/members/{id}/sim', [MemberController::class, 'sim'])->name('members.sim');
 
 Route::middleware('auth')->group(function () {
     Route::middleware('can:edit-users')->group(function () {
