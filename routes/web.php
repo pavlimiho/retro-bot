@@ -28,7 +28,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/lootsheet', [\App\Http\Controllers\LootSheetController::class, 'index'])->name('lootsheet');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('users', UserController::class);
+    Route::middleware('can:edit-users')->group(function () {
+        Route::resource('users', UserController::class);
+    });
     
-    Route::resource('members', MemberController::class);
+    Route::middleware('can:edit-members')->group(function () {
+        Route::resource('members', MemberController::class);
+    });
 });

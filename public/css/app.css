@@ -13997,3 +13997,8 @@ a.text-dark:focus {
   background-color: rgba(52, 58, 64, 0.5);
 }
 
+.bg-wowDk {
+  color: white;
+  background-color: #c41f3b !important;
+}
+

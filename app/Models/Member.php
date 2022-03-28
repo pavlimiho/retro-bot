@@ -10,7 +10,7 @@ class Member extends Model
     use SoftDeletes;
     
     protected $fillable = [
-        'member_id', 'name', 'discriminator'
+        'member_id', 'name', 'discriminator', 'wow_class_id'
     ];
     
     /**
@@ -41,5 +41,10 @@ class Member extends Model
     public function trashGames() 
     {
         return $this->belongsToMany(TrashGame::class)->withTimestamps();
+    }
+    
+    public function wowClass()
+    {
+        return $this->belongsTo(WowClass::class);
     }
 }

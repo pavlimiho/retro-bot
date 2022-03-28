@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+{{ Breadcrumbs::render('home') }}
+
 <div class="container">
     <div class="row">
         @can ('edit-users')
