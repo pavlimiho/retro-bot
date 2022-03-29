@@ -5,10 +5,20 @@
 <div class="card shadow-lg">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-sm">
-                <thead>
+            <table class="table table-bordered table-sm text-nowrap" id="lootsheetTable">
+                <tbody>
                     <tr>
-                        <th>@lang('Name')</th>
+                        <th class="d-flex">
+                            <span class="mr-3">@lang('Name')</span>
+                            <div class="input-group input-group-sm w-75">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </div>
+                                <input type="text" id="searchMember" class="form-control" placeholder="Search Roster">
+                            </div>
+                        </th>
                         @foreach ($members as $member)
                         <th colspan="2" style="background-color: {{ Arr::get($member, 'wowClass.color') }}">{{ Arr::get($member, 'name') }}</th>
                         @endforeach
@@ -52,7 +62,7 @@
                         @endforeach
                     </tr>
                     @endforeach
-                </thead>
+                </tbody>
             </table>
         </div>
     </div>
@@ -116,6 +126,33 @@
             buildItemsTable({{ Arr::get($member, 'id') }}, JSON.parse('{!! Arr::get($member, 'last_sim') !!}'));
         @endif
     @endforeach
+    
+    $('#searchMember').keyup(customDelay(function () {
+        let search = $(this).val().toLowerCase();
+        
+        if (search) {
+            let showColumns = [];
+            
+            $('#lootsheetTable tr:eq(0) th:not(:first-child)').each(function (i) {
+                if ($(this).html().toLowerCase().includes(search)) {
+                    showColumns.push((i + 1));
+                }
+            });
+            
+            $('#lootsheetTable > tbody > tr').each(function () {
+                let row = $(this);
+                row.find('> th:not(:first-child)').hide();
+                row.find('> td:not(:first-child)').hide();
+                
+                showColumns.forEach(function (column) {
+                    row.find('> td:eq('+column+')').show();
+                    row.find('> th:eq('+column+')').show();
+                });
+            });
+        } else {
+            $('#lootsheetTable th, #lootsheetTable td').show();
+        }
+    }, 500));
 </script>
 @endpush
 

@@ -102,6 +102,14 @@
 
         jQuery('#confirm-message').modal({show: true})
     }
+    
+    function customDelay(fn, ms) {
+        let timer = 0
+        return function(...args) {
+            clearTimeout(timer)
+            timer = setTimeout(fn.bind(this, ...args), ms || 0)
+        }
+    }
 </script>
 
 @stack('scripts')
