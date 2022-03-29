@@ -10,6 +10,7 @@
                     <tr>
                         <th class="d-flex">
                             <span class="mr-3">@lang('Name')</span>
+                            @if (false)
                             <div class="input-group input-group-sm w-75">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -18,6 +19,7 @@
                                 </div>
                                 <input type="text" id="searchMember" class="form-control" placeholder="Search Roster">
                             </div>
+                            @endif
                         </th>
                         @foreach ($members as $member)
                         <th colspan="2" style="background-color: {{ Arr::get($member, 'wowClass.color') }}">{{ Arr::get($member, 'name') }}</th>
