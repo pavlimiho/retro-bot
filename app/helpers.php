@@ -25,3 +25,52 @@ if (!function_exists('mapModel')) {
         return $model;
     }
 }
+
+if (!function_exists('parseCsvFile')) {
+    function parseCsvFile($file, $hasHeaders = true, $startAtRow = 1) 
+    {
+        $rows = [];
+        
+        $fh = fopen($file, 'r');
+        
+        $counter = 0;
+        
+        while (!feof($fh)) {
+            if ($hasHeaders) {
+                if ($counter === 0) {
+                    $headers = fgetcsv($fh);
+                } elseif ($counter >= $startAtRow) {
+                    $rows[] = fgetcsv($fh);
+                } else {
+                    fgetcsv($fh);
+                }
+            } else {
+                $rows[] = fgetcsv($fh);
+            }
+            
+            $counter++;
+        }
+        
+        fclose($fh);
+        
+        $data = [];
+        
+        foreach ($rows as $row) {
+            $data[] = array_combine($headers, $row);
+        }
+        
+        return $data;
+    }
+}
+
+if (!function_exists('printDate')) {
+    function printDate(string $date = null)
+    {
+        if (empty($date)) {
+            return '';
+        }
+        
+        $newDate = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date);
+        return $newDate->format('d/m/Y H:i:s');
+    }
+}

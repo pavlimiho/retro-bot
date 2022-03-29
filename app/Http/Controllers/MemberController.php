@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SimRequest;
 use App\Http\Requests\StoreMember;
 use App\Http\Requests\UpdateMember;
 use App\Models\Member;
+use App\Models\SimResult;
+use App\Services\RaidBots;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Carbon\Carbon;
 
 class MemberController extends Controller
 {
@@ -90,5 +95,31 @@ class MemberController extends Controller
         $member = Member::findOrFail($id);
         $member->delete();
         return redirect()->route('members.index');
+    }
+    
+    public function sim($id, SimRequest $request, RaidBots $raidBots)
+    {
+        $member = Member::findOrFail($id);
+        
+        $data = $raidBots->getSimData(Arr::get($request, 'sim'));
+        
+        $member->sim_link = Arr::get($request, 'sim');
+        $member->last_sim_update = Carbon::now();
+        $member->save();
+        
+        $simResult = new SimResult();
+        $simResult->member_id = Arr::get($member, 'id');
+        $simResult->link = Arr::get($request, 'sim');
+        $simResult->json = json_encode($data);
+        $simResult->save();
+        
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'data' => $data,
+                'date' => Carbon::now()->format('d/m/Y H:i:s'),
+                'memberId' => Arr::get($member, 'id')
+            ]
+        ]);
     }
 }

@@ -14,10 +14,11 @@ class LootSheetController extends Controller
     
     public function index() 
     {
-        $members = Member::with('wowClass')->orderBy('name')->get();
+        $members = Member::with(['wowClass', 'simResults'])->orderBy('name')->get();
         $instance = Instance::where('name', $this->tier)->first();
         $encounters = $instance->encounters()->orderBy('order')->get();
+        $isFluid = true;
         
-        return view('loot-sheet', compact('members', 'instance', 'encounters'));
+        return view('loot-sheet', compact('members', 'instance', 'encounters', 'isFluid'));
     }
 }

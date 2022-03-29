@@ -9,7 +9,8 @@ use Illuminate\Support\Arr;
 class RaidBots 
 {
     private $instancesPath = 'https://www.raidbots.com/static/data/live/instances.json';
-
+    private $itemsPath = 'https://www.raidbots.com/static/data/live/equippable-items.json';
+    
     private $relevantInstances = [
         'Sepulcher of the First Ones'
     ];
@@ -57,5 +58,63 @@ class RaidBots
         $encounter->name = Arr::get($data, 'name');
         $encounter->order = Arr::get($data, 'order');
         $encounter->save();
+    }
+    
+    public function syncItems()
+    {
+        $items = json_decode(file_get_contents(storage_path('app/public/items.json')), true);
+        
+        foreach ($items as $item) {
+            dd($item);
+            
+            if (in_array(Arr::get($instance, 'name'), $this->relevantInstances)) {
+                $this->syncInstance($instance);
+            }
+        }
+    }
+    
+    public function getSimData(string $link)
+    {
+        $csvLink = $this->simToCsv($link);
+        $data = parseCsvFile($csvLink);
+        return $this->parseSimData($data);
+    }
+    
+    public function simToCsv(string $link)
+    {
+        $ex = explode('/', $link);
+        return 'https://www.raidbots.com/reports/'.$ex[5].'/data.csv';
+    }
+    
+    public function parseSimData($data)
+    {
+        $parsedData = [];
+        
+        $dpsBase = Arr::get($data[0], 'dps_mean');
+        
+        foreach ($data as $i => $item) {
+            if ($i > 0) {
+                $ex = explode('/', Arr::get($item, 'name'));
+                $encounterId = $ex[1];
+                
+                // We don't need trash mobs
+                if ($encounterId < 0) {
+                    continue;
+                }
+                
+                $dps = round(Arr::get($item, 'dps_mean') - $dpsBase);
+                
+                if ($dps <= 0) {
+                    continue;
+                }
+                
+                $parsedData[$encounterId][] = [
+                    'item' => $ex[5],
+                    'dps' => $dps
+                ];
+            }
+        }
+        
+        return $parsedData;
     }
 }
