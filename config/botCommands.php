@@ -60,6 +60,12 @@ return [
         'usage' => '!rap',
         'active' => true
     ],
+    [
+        'name' => 'loot',
+        'description' => 'Link to lootsheet',
+        'usage' => '!loot',
+        'active' => true
+    ],
     
     // Other commands
     [
