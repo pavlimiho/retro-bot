@@ -112,8 +112,8 @@
             let dpsHtml = '<table class="table table-sm m-0 text-primary font-weight-bold""><tbody>';
             Object.keys(items).forEach(function (key) {
                 let item = items[key];
-                itemsHtml = itemsHtml+'<tr><td>'+item.item+'</td></tr>';
-                dpsHtml = dpsHtml+'<tr><td>'+item.dps+'</td></tr>';
+                itemsHtml = itemsHtml+'<tr><td class="'+getDpsColor(item.dps)+'">'+item.item+'</td></tr>';
+                dpsHtml = dpsHtml+'<tr><td class="'+getDpsColor(item.dps)+'">'+item.dps+'</td></tr>';
             });
             itemsHtml = itemsHtml+'</tbody></table>';
             dpsHtml = dpsHtml+'</tbody></table>';
@@ -121,6 +121,16 @@
             $('[data-item="'+memberId+'_'+encounterId+'"]').html(itemsHtml);
             $('[data-dps="'+memberId+'_'+encounterId+'"]').html(dpsHtml);
         });
+    }
+    
+    function getDpsColor(dps) {
+        if (dps >= 50) {
+            return 'text-success';
+        } else if (dps >= 20) {
+            return 'text-orange';
+        } else {
+            return 'text-secondary';
+        }
     }
     
     @foreach ($members as $member)
