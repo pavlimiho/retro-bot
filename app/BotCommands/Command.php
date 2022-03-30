@@ -6,6 +6,7 @@ use App\Models\Member;
 use App\Traits\Emojis;
 use Discord\DiscordCommandClient;
 use Discord\Parts\Channel\Message as DiscordMessage;
+use Illuminate\Support\Arr;
 
 class Command 
 {
@@ -131,9 +132,9 @@ class Command
      */
     private function setRoles()
     {
-        if (isset($this->message->author->roles)) {
-            foreach ($this->message->author->roles as $role) {
-                $this->roles[] = $role->name;
+        if (Arr::get($this->message, 'author.roles')) {
+            foreach (Arr::get($this->message, 'author.roles') as $role) {
+                $this->roles[] = Arr::get($role, 'name');
             }
         }
     }

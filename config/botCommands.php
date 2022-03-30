@@ -18,13 +18,13 @@ return [
     [
         'name' => 'end_gamble',
         'description' => 'Ends the gambling session',
-        'usage' => '!end_gamble',
+        'usage' => '!endgamble',
         'active' => true
     ],
     [
         'name' => 'gamble_history',
         'description' => 'Shows the gamble rankings',
-        'usage' => '!gamble_history',
+        'usage' => '!gamblehistory',
         'active' => true
     ],
     
@@ -86,12 +86,20 @@ return [
         'usage' => '!fun',
         'active' => true
     ],
-//    [
-//        'name' => 'au',
-//        'description' => 'Ping all au gamers',
-//        'usage' => '!au',
-//        'active' => true
-//    ],
+    [
+        'name' => 'int_this',
+        'description' => 'Add someone to the intlist',
+        'usage' => '!int',
+        'active' => true,
+        'aliases' => ['int']
+    ],
+    [
+        'name' => 'intlist',
+        'description' => 'Show the intlist',
+        'usage' => '!intlist',
+        'active' => true
+    ],
+
 
     // Alex commands not built on this bot, using this only for the help command
     [
