@@ -106,6 +106,9 @@
     }
     
     function buildItemsTable(memberId, data) {
+        $('[data-item^="'+memberId+'_"]').html('');
+        $('[data-dps^="'+memberId+'_"]').html('');
+        
         Object.keys(data).forEach(function (encounterId) {
             let items = data[encounterId];
             let itemsHtml = '<table class="table table-sm m-0 text-primary font-weight-bold"><tbody>';
