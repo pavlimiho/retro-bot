@@ -24,10 +24,6 @@
 <body>
     <div id="landing">
         <main>
-            <a href="{{ route('welcome') }}" class="position-absolute">
-                <img src="{{ asset('images/retro_logo.png') }}" class="img-fluid rounded-lg" style="max-width: 100px;" />
-            </a>
-            
             @yield('content')
         </main>
     </div>
