@@ -31,7 +31,7 @@ class Intlist extends Command
     {
         $ints = Ints::orderBy('count', 'desc')->get();
         
-        $message = '';
+        $message = "***Retro top inters***\n";
         
         foreach ($ints as $int) {
             $message.= $int->name.' '.$int->count."\n";
