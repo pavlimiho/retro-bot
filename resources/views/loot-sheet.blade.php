@@ -59,7 +59,7 @@
                     <tr>
                         <th>
                             <!--{{ Arr::get($encounter, 'name') }}-->
-                            <img src="{{ asset('images/encounters/'.Arr::get($encounter, 'external_id')).'.png' }}" class="img-fluid" style="width: 150px;" />
+                            <img src="{{ asset('images/encounters/'.Arr::get($encounter, 'external_id')).'.png' }}" class="img-fluid" style="width: 150px;" title="{{ Arr::get($encounter, 'name') }}" />
                         </th>
                         @foreach ($members as $member)
                         <td data-item="{{ Arr::get($member, 'id').'_'.Arr::get($encounter, 'external_id') }}"></td>
