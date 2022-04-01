@@ -121,7 +121,7 @@
         if(raw){
             return local_date
         }
-        return moment(local_date).format('MM/DD/YYYY hh:mm a')
+        return moment(local_date).format('DD/MM/YYYY hh:mm a')
     }
 </script>
 
