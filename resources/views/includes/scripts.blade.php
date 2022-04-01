@@ -10,20 +10,18 @@
                 data: params.data,
                 beforeSend: function () {
                     isLoading = true;
-                    $('#overlay').fadeIn();
+                    params.beforeSend();
                 },
                 success: function (response) {
                     params.success(response);
 
                     isLoading = false;
-                    $('#overlay').fadeOut();
                     
                 },
                 error: function (e, textStatus, errorThrown) {
                     isLoading = false;
-                    $('#overlay').fadeOut();
                     
-                    @if (config('app.env') === 'local1')
+                    @if (config('app.env') === 'local')
                         writeConsole(e.responseText)
                     @else
                         let response = JSON.parse(e.responseText);

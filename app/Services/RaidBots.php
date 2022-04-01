@@ -86,6 +86,17 @@ class RaidBots
         return 'https://www.raidbots.com/reports/'.$ex[5].'/data.csv';
     }
     
+    public function getSimDataFromJson(string $link)
+    {
+        return json_decode(file_get_contents($this->simToJson($link)), true);
+    }
+    
+    public function simToJson(string $link)
+    {
+        $ex = explode('/', $link);
+        return 'https://www.raidbots.com/reports/'.$ex[5].'/data.json';
+    }
+    
     public function parseSimData($data)
     {
         $parsedData = [];
@@ -116,5 +127,10 @@ class RaidBots
         }
         
         return $parsedData;
+    }
+    
+    public function getSimTimestamp(string $link)
+    {
+        return Arr::get($this->getSimDataFromJson($link), 'timestamp');
     }
 }

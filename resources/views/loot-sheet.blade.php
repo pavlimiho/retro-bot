@@ -57,7 +57,10 @@
                     </tr>
                     @foreach ($encounters as $encounter)
                     <tr>
-                        <th>{{ Arr::get($encounter, 'name') }}</th>
+                        <th>
+                            <!--{{ Arr::get($encounter, 'name') }}-->
+                            <img src="{{ asset('images/encounters/'.Arr::get($encounter, 'external_id')).'.png' }}" class="img-fluid" style="width: 150px;" />
+                        </th>
                         @foreach ($members as $member)
                         <td data-item="{{ Arr::get($member, 'id').'_'.Arr::get($encounter, 'external_id') }}"></td>
                         <td data-dps="{{ Arr::get($member, 'id').'_'.Arr::get($encounter, 'external_id') }}"></td>
@@ -74,6 +77,7 @@
 <script>
     $('[data-simForm]').submit(function (e) {
         e.preventDefault();
+        let button = $(this).find('button');
         
         customAjax({
             url: $(this).attr('action'),
@@ -81,10 +85,20 @@
                 _token: "{{ csrf_token() }}",
                 sim: $(this).find('[name="sim"]').val()
             },
+            beforeSend: function () {
+                button.addClass('btn-warning');
+                button.find('i').addClass('fa-spin');
+            },
             success: function (response) {
                 parseSimResponse(response.data)
+                
+                button.removeClass('btn-warning');
+                button.find('i').removeClass('fa-spin');
             },
             error: function (response) {
+                button.removeClass('btn-warning');
+                button.find('i').removeClass('fa-spin');
+                
                 let error = '';
                 if (response.errors && response.errors.sim) {
                     response.errors.sim.forEach(function (item) {

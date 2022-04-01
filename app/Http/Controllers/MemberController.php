@@ -102,9 +102,10 @@ class MemberController extends Controller
         $member = Member::findOrFail($id);
         
         $data = $raidBots->getSimData(Arr::get($request, 'sim'));
+        $timestamp = $raidBots->getSimTimestamp(Arr::get($request, 'sim'));
         
         $member->sim_link = Arr::get($request, 'sim');
-        $member->last_sim_update = Carbon::now();
+        $member->last_sim_update = Carbon::createFromTimestamp($timestamp)->format('Y-m-d H:i:s');
         $member->save();
         
         $simResult = new SimResult();
@@ -117,7 +118,7 @@ class MemberController extends Controller
             'success' => true,
             'data' => [
                 'data' => $data,
-                'date' => Carbon::now()->format('d/m/Y H:i:s'),
+                'date' => Arr::get($member, 'last_sim_update'),
                 'memberId' => Arr::get($member, 'id')
             ]
         ]);
