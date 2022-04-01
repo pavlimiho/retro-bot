@@ -74,3 +74,17 @@ if (!function_exists('printDate')) {
         return $newDate->format('d/m/Y H:i:s');
     }
 }
+
+/**
+ * Gets Datetime stored in DB as UTC and shows as Browser's local DateTime
+ * @param String $datetime
+ * @return Carbon DateTime
+ */
+if (!function_exists('displayLocalDateTime')) {
+    function displayLocalDateTime($datetime, $tz = 'Europe/Paris') 
+    {
+        $timezone = $tz ? $tz : session('timezone');
+        $datetime = \Carbon\Carbon::parse($datetime);
+        return $timezone ? $datetime->setTimezone($timezone) : $datetime;
+    }
+}

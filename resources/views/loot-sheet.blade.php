@@ -45,7 +45,7 @@
                     <tr>
                         <th>@lang('Last Updated')</th>
                         @foreach ($members as $member)
-                        <td colspan="2" data-dateSimUpdate="{{ Arr::get($member, 'id') }}">{{ printDate(Arr::get($member, 'last_sim_update')) }}</td>
+                        <td colspan="2" data-dateSimUpdate="{{ Arr::get($member, 'id') }}"></td>
                         @endforeach
                     </tr>
                     <tr class="bg-primary">
@@ -90,7 +90,7 @@
                 button.find('i').addClass('fa-spin');
             },
             success: function (response) {
-                parseSimResponse(response.data)
+                buildItemsTable(response.data.memberId, response.data.data, response.data.date)
                 
                 button.removeClass('btn-warning');
                 button.find('i').removeClass('fa-spin');
@@ -114,12 +114,9 @@
         });
     });
     
-    function parseSimResponse(data) {
-        buildItemsTable(data.memberId, data.data);
-        $('[data-dateSimUpdate="'+data.memberId+'"]').html(data.date);
-    }
-    
-    function buildItemsTable(memberId, data) {
+    function buildItemsTable(memberId, data, date) {
+        $('[data-dateSimUpdate="'+memberId+'"]').html(parseLocalDateTime(date));
+        
         $('[data-item^="'+memberId+'_"]').html('');
         $('[data-dps^="'+memberId+'_"]').html('');
         
@@ -152,7 +149,7 @@
     
     @foreach ($members as $member)
         @if (Arr::get($member, 'last_sim'))
-            buildItemsTable({{ Arr::get($member, 'id') }}, JSON.parse('{!! Arr::get($member, 'last_sim') !!}'));
+            buildItemsTable({{ Arr::get($member, 'id') }}, JSON.parse('{!! Arr::get($member, 'last_sim') !!}'), '{{ Arr::get($member, 'last_sim_update') }}');
         @endif
     @endforeach
     

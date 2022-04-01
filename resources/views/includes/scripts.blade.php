@@ -108,6 +108,21 @@
             timer = setTimeout(fn.bind(this, ...args), ms || 0)
         }
     }
+    
+    function parseLocalDateTime(date_time, raw){
+        var bits = date_time.split(/\D/);
+        if(bits.length  == 6){
+            var local_date = new Date(Date.UTC(bits[0], --bits[1], bits[2], bits[3], bits[4], bits[5]));
+        }
+        else{
+            let db_date = new Date(date_time)
+            let local_date = new Date(Date.UTC(db_date.getFullYear(), db_date.getMonth(), db_date.getDate(), db_date.getHours(), db_date.getMinutes(), db_date.getSeconds()))
+        }
+        if(raw){
+            return local_date
+        }
+        return moment(local_date).format('MM/DD/YYYY hh:mm a')
+    }
 </script>
 
 @stack('scripts')
