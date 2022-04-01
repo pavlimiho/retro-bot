@@ -78,7 +78,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @if (session('message'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -107,7 +107,7 @@
             </div>
             @endif
             
-            <div class="@isset($isFluid) container-fluid @else container @endisset">
+            <div class="@isset($isFluid) container-fluid p-0 @else container @endisset">
                 @yield('content')
             </div>
         </main>
