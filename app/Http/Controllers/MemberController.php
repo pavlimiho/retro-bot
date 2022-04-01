@@ -8,9 +8,10 @@ use App\Http\Requests\UpdateMember;
 use App\Models\Member;
 use App\Models\SimResult;
 use App\Services\RaidBots;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Carbon\Carbon;
+use Illuminate\Validation\ValidationException;
 
 class MemberController extends Controller
 {
@@ -102,10 +103,14 @@ class MemberController extends Controller
         $member = Member::findOrFail($id);
         
         $data = $raidBots->getSimData(Arr::get($request, 'sim'));
-        $timestamp = $raidBots->getSimTimestamp(Arr::get($request, 'sim'));
+        $jsonData = $raidBots->getSimDataFromJson(Arr::get($request, 'sim'));
+        
+        if (Arr::get($jsonData, 'simbot.player') !== Arr::get($member, 'name')) {
+            throw ValidationException::withMessages(['sim' => 'Sim does not match the name']);
+        }
         
         $member->sim_link = Arr::get($request, 'sim');
-        $member->last_sim_update = Carbon::createFromTimestamp($timestamp)->format('Y-m-d H:i:s');
+        $member->last_sim_update = Carbon::createFromTimestamp(Arr::get($jsonData, 'timestamp'))->format('Y-m-d H:i:s');
         $member->save();
         
         $simResult = new SimResult();
