@@ -14013,7 +14013,7 @@ a.text-dark:focus {
 .table-fixed-header thead {
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 2;
   background-color: white;
 }
 

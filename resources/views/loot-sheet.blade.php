@@ -5,7 +5,7 @@
 <div class="card shadow-lg">
     <div class="card-body p-0">
         <div class="table-responsive table-fixed-header" style="height: calc(100vh - 2px);">
-            <table class="table table-bordered table-sm text-nowrap table-hover table-clickable" id="lootsheetTable">
+            <table class="table table-sm text-nowrap mb-0" id="lootsheetTable">
                 <thead>
                     <tr>
                         <th class="position-sticky bg-white" style="left: 0;">
@@ -18,7 +18,7 @@
                         @endforeach
                     </tr>
                     <tr>
-                        <th class="position-sticky bg-white" style="left: 0;">@lang('Link')</th>
+                        <th class="position-sticky bg-white" style="left: 0; z-index: 3;">@lang('Link')</th>
                         @foreach ($members as $member)
                         <td colspan="2" style="border-left: groove;">
                             <form action="{{ route('members.sim', $member) }}" method="POST" data-simForm="true" autocomplete="off">
