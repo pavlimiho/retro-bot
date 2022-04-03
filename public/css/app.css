@@ -14006,3 +14006,14 @@ a.text-dark:focus {
   color: #f6993f !important;
 }
 
+.table-fixed-header {
+  overflow-y: auto;
+}
+
+.table-fixed-header thead {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background-color: white;
+}
+

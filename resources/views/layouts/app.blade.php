@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm @isset ($noHeader) d-none @endisset">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{ asset('images/retro_logo.png') }}" class="img-fluid rounded-circle mr-1" style="max-width: 40px;" />

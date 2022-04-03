@@ -18,7 +18,8 @@ class LootSheetController extends Controller
         $instance = Instance::where('name', $this->tier)->first();
         $encounters = $instance->encounters()->orderBy('order')->get();
         $isFluid = true;
+        $noHeader = true;
         
-        return view('loot-sheet', compact('members', 'instance', 'encounters', 'isFluid'));
+        return view('loot-sheet', compact('members', 'instance', 'encounters', 'isFluid', 'noHeader'));
     }
 }

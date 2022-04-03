@@ -18,3 +18,14 @@
 .text-orange {
     color: $orange !important;
 }
+
+.table-fixed-header {
+    overflow-y: auto;
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        background-color: white;
+    }
+}
+  

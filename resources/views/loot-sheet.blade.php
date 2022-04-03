@@ -3,32 +3,24 @@
 @section('content')
 
 <div class="card shadow-lg">
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-sm text-nowrap" id="lootsheetTable">
-                <tbody>
+    <div class="card-body p-0">
+        <div class="table-responsive table-fixed-header" style="height: calc(100vh - 2px);">
+            <table class="table table-bordered table-sm text-nowrap table-hover table-clickable" id="lootsheetTable">
+                <thead>
                     <tr>
-                        <th class="d-flex">
-                            <span class="mr-3">@lang('Name')</span>
-                            @if (false)
-                            <div class="input-group input-group-sm w-75">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fa fa-search"></i>
-                                    </span>
-                                </div>
-                                <input type="text" id="searchMember" class="form-control" placeholder="Search Roster">
-                            </div>
-                            @endif
+                        <th class="position-sticky bg-white" style="left: 0;">
+                            <a href="{{ route('home') }}">
+                                <img src="{{ asset('images/retro_logo.png') }}" class="img-fluid rounded-circle" style="max-width: 25px;" />
+                            </a>
                         </th>
                         @foreach ($members as $member)
-                        <th colspan="2" style="background-color: {{ Arr::get($member, 'wowClass.color') }}">{{ Arr::get($member, 'name') }}</th>
+                        <th colspan="2" style="background-color: {{ Arr::get($member, 'wowClass.color') }}; border-left: groove; min-width: 120px;">{{ Arr::get($member, 'name') }}</th>
                         @endforeach
                     </tr>
                     <tr>
-                        <th>@lang('Link')</th>
+                        <th class="position-sticky bg-white" style="left: 0;">@lang('Link')</th>
                         @foreach ($members as $member)
-                        <td colspan="2">
+                        <td colspan="2" style="border-left: groove;">
                             <form action="{{ route('members.sim', $member) }}" method="POST" data-simForm="true" autocomplete="off">
                                 <div class="input-group input-group-sm">
                                     <input type="text" name="sim" class="form-control" placeholder="Insert Sim Link" value="{{ Arr::get($member, 'sim_link') }}" required>
@@ -43,26 +35,28 @@
                         @endforeach
                     </tr>
                     <tr>
-                        <th>@lang('Last Updated')</th>
+                        <th class="position-sticky bg-white" style="left: 0;">@lang('Last Updated')</th>
                         @foreach ($members as $member)
-                        <td colspan="2" data-dateSimUpdate="{{ Arr::get($member, 'id') }}"></td>
+                        <td colspan="2" data-dateSimUpdate="{{ Arr::get($member, 'id') }}" style="border-left: groove;"></td>
                         @endforeach
                     </tr>
                     <tr class="bg-primary">
-                        <th>{{ Arr::get($instance, 'name') }}</th>
+                        <th class="position-sticky bg-white" style="left: 0;">{{ Arr::get($instance, 'name') }}</th>
                         @foreach ($members as $member)
-                        <th>@lang ('Item')</th>
+                        <th style="border-left: groove;">@lang ('Item')</th>
                         <th>@lang ('DPS')</th>
                         @endforeach
                     </tr>
+                </thead>
+                <tbody>
                     @foreach ($encounters as $encounter)
                     <tr>
-                        <th>
+                        <th class="position-sticky bg-white" style="left: 0;">
                             <!--{{ Arr::get($encounter, 'name') }}-->
                             <img src="{{ asset('images/encounters/'.Arr::get($encounter, 'external_id')).'.png' }}" class="img-fluid" style="width: 150px;" title="{{ Arr::get($encounter, 'name') }}" />
                         </th>
                         @foreach ($members as $member)
-                        <td data-item="{{ Arr::get($member, 'id').'_'.Arr::get($encounter, 'external_id') }}"></td>
+                        <td data-item="{{ Arr::get($member, 'id').'_'.Arr::get($encounter, 'external_id') }}" style="border-left: groove;"></td>
                         <td data-dps="{{ Arr::get($member, 'id').'_'.Arr::get($encounter, 'external_id') }}"></td>
                         @endforeach
                     </tr>
@@ -126,8 +120,8 @@
             let dpsHtml = '<table class="table table-sm m-0 text-primary font-weight-bold""><tbody>';
             Object.keys(items).forEach(function (key) {
                 let item = items[key];
-                itemsHtml = itemsHtml+'<tr><td class="'+getDpsColor(item.dps)+'">'+item.item+'</td></tr>';
-                dpsHtml = dpsHtml+'<tr><td class="'+getDpsColor(item.dps)+'">'+item.dps+'</td></tr>';
+                itemsHtml = itemsHtml+'<tr><td class="border-0 '+getDpsColor(item.dps)+'">'+item.item+'</td></tr>';
+                dpsHtml = dpsHtml+'<tr><td class="border-0 '+getDpsColor(item.dps)+'">'+item.dps+'</td></tr>';
             });
             itemsHtml = itemsHtml+'</tbody></table>';
             dpsHtml = dpsHtml+'</tbody></table>';
@@ -152,33 +146,6 @@
             buildItemsTable({{ Arr::get($member, 'id') }}, JSON.parse('{!! Arr::get($member, 'last_sim') !!}'), '{{ Arr::get($member, 'last_sim_update') }}');
         @endif
     @endforeach
-    
-    $('#searchMember').keyup(customDelay(function () {
-        let search = $(this).val().toLowerCase();
-        
-        if (search) {
-            let showColumns = [];
-            
-            $('#lootsheetTable tr:eq(0) th:not(:first-child)').each(function (i) {
-                if ($(this).html().toLowerCase().includes(search)) {
-                    showColumns.push((i + 1));
-                }
-            });
-            
-            $('#lootsheetTable > tbody > tr').each(function () {
-                let row = $(this);
-                row.find('> th:not(:first-child)').hide();
-                row.find('> td:not(:first-child)').hide();
-                
-                showColumns.forEach(function (column) {
-                    row.find('> td:eq('+column+')').show();
-                    row.find('> th:eq('+column+')').show();
-                });
-            });
-        } else {
-            $('#lootsheetTable th, #lootsheetTable td').show();
-        }
-    }, 500));
 </script>
 @endpush
 
