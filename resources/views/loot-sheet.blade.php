@@ -12,15 +12,21 @@
                             <a href="{{ route('home') }}">
                                 <img src="{{ asset('images/retro_logo.png') }}" class="img-fluid rounded-circle" style="max-width: 25px;" />
                             </a>
+                            <div class="custom-control custom-switch pull-right">
+                                <input class="custom-control-input cursor-pointer" type="checkbox" id="changeMode">
+                                <label class="custom-control-label cursor-pointer" for="changeMode">
+                                    <i class="fa fa-moon-o text-dark"></i>
+                                </label>
+                            </div>
                         </th>
                         @foreach ($members as $member)
-                        <th colspan="2" style="background-color: {{ Arr::get($member, 'wowClass.color') }}; border-left: groove; min-width: 120px;">{{ Arr::get($member, 'name') }}</th>
+                        <th colspan="2" class="text-dark" style="background-color: {{ Arr::get($member, 'wowClass.color') }}; border-left: groove; min-width: 120px;">{{ Arr::get($member, 'name') }}</th>
                         @endforeach
                     </tr>
                     <tr>
                         <th class="position-sticky bg-white" style="left: 0; z-index: 3;">@lang('Link')</th>
                         @foreach ($members as $member)
-                        <td colspan="2" style="border-left: groove;">
+                        <td colspan="2" style="border-left: groove;" data-simInputCell="true">
                             <form action="{{ route('members.sim', $member) }}" method="POST" data-simForm="true" autocomplete="off">
                                 <div class="input-group input-group-sm">
                                     <input type="text" name="sim" class="form-control" placeholder="Insert Sim Link" value="{{ Arr::get($member, 'sim_link') }}" required>
@@ -43,8 +49,8 @@
                     <tr class="bg-primary">
                         <th class="position-sticky bg-white" style="left: 0;">{{ Arr::get($instance, 'name') }}</th>
                         @foreach ($members as $member)
-                        <th style="border-left: groove;">@lang ('Item')</th>
-                        <th>@lang ('DPS')</th>
+                        <th class="text-dark" style="border-left: groove;">@lang ('Item')</th>
+                        <th class="text-dark">@lang ('DPS')</th>
                         @endforeach
                     </tr>
                 </thead>
@@ -69,6 +75,8 @@
 
 @push ('scripts')
 <script>
+    let currentTheme = getCookie('retro_theme');
+    
     $('[data-simForm]').submit(function (e) {
         e.preventDefault();
         let button = $(this).find('button');
@@ -145,8 +153,43 @@
         let days = Math.round(moment.duration(moment().startOf('day') - moment(date)).asDays());
         
         if (days >= 6) {
-            return 'text-danger';
+            return currentTheme === 'dark' ? 'text-orange' : 'text-danger';
         }
+    }
+    
+    $('#changeMode').change(function () {
+        let mode = $(this).is(':checked') ? 'dark' : 'light';
+        setCookie('retro_theme', mode, 30)
+        
+        if (mode === 'dark') {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    });
+    
+    if (currentTheme === 'dark') {
+        setDarkMode();
+    }
+    
+    function setLightMode() {
+        $('#lootsheetTable').removeClass('bg-dark');
+        $('#lootsheetTable .bg-dark, [data-dateSimUpdate], [data-simInputCell]').removeClass('bg-dark').addClass('bg-white');
+        $('#lootsheetTable').css('color', '#212529');
+        $('[data-dateSimUpdte]').removeClass('bg-dark').addClass('bg-white');
+        $('[data-dateSimUpdate] span.text-orange').removeClass('text-orange').addClass('text-danger');
+        $('[name="sim"]').removeClass('bg-secondary text-white');
+        $('[for="changeMode"] i').removeClass('text-white').addClass('text-dark');
+    }
+    
+    function setDarkMode() {
+        $('#changeMode').prop('checked', true);
+        $('#lootsheetTable').addClass('bg-dark');
+        $('#lootsheetTable .bg-white, [data-dateSimUpdate], [data-simInputCell]').removeClass('bg-white').addClass('bg-dark');
+        $('#lootsheetTable').css('color', 'white');
+        $('[data-dateSimUpdate] span.text-danger').removeClass('text-danger').addClass('text-orange');
+        $('[name="sim"]').addClass('bg-secondary text-white');
+        $('[for="changeMode"] i').removeClass('text-dark').addClass('text-white');
     }
     
     @foreach ($members as $member)

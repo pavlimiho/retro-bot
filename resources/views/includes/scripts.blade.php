@@ -128,9 +128,20 @@
         } else {
             return moment(local_date).format(format);
         }
-        
-        return moment(local_date).format('ddd Do MMMM')
-        
+    }
+    
+    function setCookie(name, data, daysToLive) {
+        let dateExpireCookie = new Date();
+        dateExpireCookie.setDate(dateExpireCookie.getDate() + daysToLive); 
+        document.cookie = name + "=" + data + "; expires="+ dateExpireCookie +";";
+    }
+
+    function getCookie(name) {
+        const value = '; ' + document.cookie;
+        const parts = value.split('; ' + name + '=');
+        if (parts.length === 2) {
+            return parts.pop().split(';').shift();
+        }
     }
 </script>
 
