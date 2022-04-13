@@ -109,7 +109,7 @@
     });
     
     function buildItemsTable(memberId, data, date) {
-        $('[data-dateSimUpdate="'+memberId+'"]').html(parseLocalDateTime(date));
+        $('[data-dateSimUpdate="'+memberId+'"]').html('<span class="'+getDateColor(date)+'" title="'+parseLocalDateTime(date)+'">'+parseLocalDateTime(date, 'ddd Do MMMM')+'</span>');
         
         $('[data-item^="'+memberId+'_"]').html('');
         $('[data-dps^="'+memberId+'_"]').html('');
@@ -138,6 +138,14 @@
             return 'text-orange';
         } else {
             return 'text-secondary';
+        }
+    }
+    
+    function getDateColor(date) {
+        let days = Math.round(moment.duration(moment().startOf('day') - moment(date)).asDays());
+        
+        if (days >= 6) {
+            return 'text-danger';
         }
     }
     
