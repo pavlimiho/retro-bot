@@ -128,4 +128,13 @@ class MemberController extends Controller
             ]
         ]);
     }
+    
+    public function note($id, Request $request)
+    {
+        $member = Member::findOrFail($id);
+        $member->note = Arr::get($request, 'note');
+        $member->save();
+        
+        return response()->json(['success' => true]);
+    }
 }

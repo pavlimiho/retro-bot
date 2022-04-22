@@ -20,7 +20,7 @@
                             </div>
                         </th>
                         @foreach ($members as $member)
-                        <th colspan="2" class="text-dark" style="background-color: {{ Arr::get($member, 'wowClass.color') }}; border-left: groove; min-width: 120px;">{{ Arr::get($member, 'name') }}</th>
+                        <th class="text-center" colspan="2" class="text-dark" style="background-color: {{ Arr::get($member, 'wowClass.color') }}; border-left: groove; min-width: 120px;">{{ Arr::get($member, 'name') }}</th>
                         @endforeach
                     </tr>
                     <tr>
@@ -67,6 +67,19 @@
                         @endforeach
                     </tr>
                     @endforeach
+                    <tr>
+                        <th class="position-sticky bg-white text-right align-middle" style="left: 0;">Note</th>
+                        @foreach ($members as $member)
+                        <td colspan="2" style="border-left: groove;">
+                            <form name="noteForm" action="{{ route('members.note', $member) }}" method="POST" autocomplete="off">
+                                <textarea name="note" placeholder="Note" style="min-height: 100px;">{{ Arr::get($member, 'note') }}</textarea>
+                                <button type="submit" class="btn btn-success btn-block btn-sm">
+                                    <i class="fa fa-save"></i> Save
+                                </button>
+                            </form>
+                        </td>
+                        @endforeach
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -179,6 +192,7 @@
         $('[data-dateSimUpdte]').removeClass('bg-dark').addClass('bg-white');
         $('[data-dateSimUpdate] span.text-orange').removeClass('text-orange').addClass('text-danger');
         $('[name="sim"]').removeClass('bg-secondary text-white');
+        $('[name="note"]').removeClass('bg-secondary text-white');
         $('[for="changeMode"] i').removeClass('text-white').addClass('text-dark');
     }
     
@@ -189,8 +203,37 @@
         $('#lootsheetTable').css('color', 'white');
         $('[data-dateSimUpdate] span.text-danger').removeClass('text-danger').addClass('text-orange');
         $('[name="sim"]').addClass('bg-secondary text-white');
+        $('[name="note"]').addClass('bg-secondary text-white');
         $('[for="changeMode"] i').removeClass('text-dark').addClass('text-white');
     }
+    
+    $('[name="noteForm"]').submit(function (e) {
+        e.preventDefault();
+        let button = $(this).find('button');
+        
+        customAjax({
+            url: $(this).attr('action'),
+            data: {
+                _token: "{{ csrf_token() }}",
+                note: $(this).find('[name="note"]').val()
+            },
+            beforeSend: function () {
+                button.addClass('btn-warning');
+                button.find('i').removeClass('fa-save').addClass('fa-refresh fa-spin');
+            },
+            success: function (response) {
+                button.removeClass('btn-warning');
+                button.find('i').removeClass('fa-refresh fa-spin').addClass('fa-save');
+            },
+            error: function (response) {
+                button.removeClass('btn-warning');
+                button.find('i').removeClass('fa-refresh fa-spin').addClass('fa-save');
+                
+                let error = '';
+                Swal.fire(response.message, error, 'error');
+            }
+        });
+    });
     
     @foreach ($members as $member)
         @if (Arr::get($member, 'last_sim'))
