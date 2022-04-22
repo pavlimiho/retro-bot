@@ -20,7 +20,7 @@
                             </div>
                         </th>
                         @foreach ($members as $member)
-                        <th class="text-center" colspan="2" class="text-dark" style="background-color: {{ Arr::get($member, 'wowClass.color') }}; border-left: groove; min-width: 120px;">{{ Arr::get($member, 'name') }}</th>
+                        <th colspan="2" class="text-center text-dark" style="background-color: {{ Arr::get($member, 'wowClass.color') }}; border-left: groove; min-width: 120px;">{{ Arr::get($member, 'name') }}</th>
                         @endforeach
                     </tr>
                     <tr>
