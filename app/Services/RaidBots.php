@@ -133,4 +133,21 @@ class RaidBots
     {
         return Arr::get($this->getSimDataFromJson($link), 'timestamp');
     }
+    
+    public function parseSimInput($data)
+    {
+        $explode = explode("\n", $data);
+        
+        $parsed = [];
+        
+        foreach ($explode as $val) {
+            $ex = explode('=', $val);
+            
+            if (count($ex) === 2) {
+                $parsed[$ex[0]] = trim($ex[1], '"');
+            }
+        }
+        
+        return $parsed;
+    }
 }

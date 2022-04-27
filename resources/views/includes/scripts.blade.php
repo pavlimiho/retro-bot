@@ -23,6 +23,9 @@
                     
                     @if (config('app.env') === 'local')
                         writeConsole(e.responseText)
+                        if (params.error) {
+                            params.error(e, textStatus, errorThrown)
+                        }
                     @else
                         let response = JSON.parse(e.responseText);
                         if (params.error) {

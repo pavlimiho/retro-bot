@@ -106,7 +106,13 @@ class MemberController extends Controller
         $jsonData = $raidBots->getSimDataFromJson(Arr::get($request, 'sim'));
         
         if (Arr::get($jsonData, 'simbot.player') !== Arr::get($member, 'name')) {
-            throw ValidationException::withMessages(['sim' => 'Sim does not match the name']);
+            throw ValidationException::withMessages(['sim' => __('Sim does not match the name')]);
+        }
+        
+        $simbotInput = $raidBots->parseSimInput(Arr::get($jsonData, 'simbot.input'));
+        
+        if (Arr::get($simbotInput, 'fight_style') || Arr::get($simbotInput, 'desired_targets') !== '1' || Arr::get($simbotInput, 'max_time') !== '300') {
+            throw ValidationException::withMessages(['sim' => __('Sim needs to be patchwerk, 1 target, 5 minutes')]);
         }
         
         $member->sim_link = Arr::get($request, 'sim');
