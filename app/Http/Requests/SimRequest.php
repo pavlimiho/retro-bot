@@ -24,7 +24,7 @@ class SimRequest extends FormRequest
     public function rules()
     {
         return [
-            'sim' => 'required|min:61|max:63|starts_with:https://www.raidbots.com/simbot/report/'
+            'sim' => 'required|min:60|max:63|starts_with:https://www.raidbots.com/simbot/report/'
         ];
     }
 }
