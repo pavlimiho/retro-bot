@@ -46,7 +46,7 @@ class Nuke extends Command
         }
         
         if ($this->validate()) {
-            $this->message->channel->getMessageHistory(['limit' => $limit])->done(function ($messages) {
+            $this->message->channel->getMessageHistory(['limit' => (int)$limit])->done(function ($messages) {
                 $this->message->channel->deleteMessages($messages);
             });
         }
