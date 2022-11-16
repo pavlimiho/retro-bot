@@ -37,8 +37,16 @@ class Nuke extends Command
      */
     public function run() 
     {
+        $limit = 2;
+        
+        if ($this->params && $this->params[0] < 100) {
+            $limit = $this->params[0] + 1;
+        } elseif ($this->params && $this->params[0] == 100) {
+            $limit = $this->params[0];
+        }
+        
         if ($this->validate()) {
-            $this->message->channel->getMessageHistory(['limit' => ($this->params ? (int)($this->params[0] + 1) : 2)])->done(function ($messages) {
+            $this->message->channel->getMessageHistory(['limit' => $limit])->done(function ($messages) {
                 $this->message->channel->deleteMessages($messages);
             });
         }

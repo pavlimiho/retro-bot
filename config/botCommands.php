@@ -66,12 +66,6 @@ return [
         'usage' => '!loot',
         'active' => true
     ],
-    [
-        'name' => 'nuke',
-        'description' => 'Delete messages',
-        'usage' => '!nuke <number>',
-        'active' => true
-    ],
     
     // Other commands
     [
@@ -103,6 +97,12 @@ return [
         'name' => 'intlist',
         'description' => 'Show the intlist',
         'usage' => '!intlist',
+        'active' => true
+    ],
+    [
+        'name' => 'nuke',
+        'description' => 'Delete messages',
+        'usage' => '!nuke <number>',
         'active' => true
     ],
 
