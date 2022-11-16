@@ -132,8 +132,8 @@ class Command
      */
     private function setRoles()
     {
-        if (Arr::get($this->message, 'author.roles')) {
-            foreach (Arr::get($this->message, 'author.roles') as $role) {
+        if (Arr::get($this->message, 'member.roles')) {
+            foreach (Arr::get($this->message, 'member.roles') as $role) {
                 $this->roles[] = Arr::get($role, 'name');
             }
         }
