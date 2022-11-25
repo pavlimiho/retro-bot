@@ -8,11 +8,11 @@ use Illuminate\Support\Arr;
 
 class RaidBots 
 {
-    private $instancesPath = 'https://www.raidbots.com/static/data/live/instances.json';
+    private $instancesPath = 'https://www.raidbots.com/static/data/beta/instances.json';
     private $itemsPath = 'https://www.raidbots.com/static/data/live/equippable-items.json';
     
     private $relevantInstances = [
-        'Sepulcher of the First Ones'
+        'Vault of the Incarnates'
     ];
     
     public function syncInstances()

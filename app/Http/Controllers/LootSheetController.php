@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class LootSheetController extends Controller
 {
-    private $tier = 'Sepulcher of the First Ones';
+    private $tier = 'Vault of the Incarnates';
     
     public function index() 
     {

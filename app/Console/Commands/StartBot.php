@@ -51,12 +51,6 @@ class StartBot extends Command
     public function __construct()
     {
         parent::__construct();
-        
-        $this->discord = new DiscordCommandClient([
-            'token' => env('TOKEN'),
-            'prefix' => $this->commandPrefix,
-            'description' => 'A fun bot for Retro-Silvermoon guild'
-        ]);
     }
 
     /**
@@ -66,6 +60,12 @@ class StartBot extends Command
      */
     public function handle()
     {
+        $this->discord = new DiscordCommandClient([
+            'token' => env('TOKEN'),
+            'prefix' => $this->commandPrefix,
+            'description' => 'A fun bot for Retro-Silvermoon guild'
+        ]);
+        
         $this->registerCommands();
         
         $this->discord->run();

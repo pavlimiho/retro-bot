@@ -19,7 +19,7 @@ class Form extends Component
      */
     public function __construct($member = null)
     {
-        $this->wowClasses = WowClass::get();
+        $this->wowClasses = WowClass::orderBy('name')->get();
         $this->member = $member;
         $this->selectedClass = Arr::get($this->member, 'wow_class_id');
     }

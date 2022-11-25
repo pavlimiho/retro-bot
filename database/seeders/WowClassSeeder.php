@@ -9,6 +9,7 @@ class WowClassSeeder extends Seeder
         ['name' => 'Death Knight', 'color' => '#c41f3b'],
         ['name' => 'Demon Hunter', 'color' => '#a330c9'],
         ['name' => 'Druid', 'color' => '#ff7d0a'],
+        ['name' => 'Evoker', 'color' => '#33937f'],
         ['name' => 'Hunter', 'color' => '#abd473'],
         ['name' => 'Mage', 'color' => '#40c7eb'],
         ['name' => 'Monk', 'color' => '#00ff96'],

@@ -72,7 +72,7 @@
                         @foreach ($members as $member)
                         <td colspan="2" style="border-left: groove;">
                             <form name="noteForm" action="{{ route('members.note', $member) }}" method="POST" autocomplete="off">
-                                <textarea name="note" placeholder="Note" style="min-height: 100px;">{{ Arr::get($member, 'note') }}</textarea>
+                                <textarea name="note" placeholder="Note" style="min-height: 100px;" class="w-100">{{ Arr::get($member, 'note') }}</textarea>
                                 <button type="submit" class="btn btn-success btn-block btn-sm">
                                     <i class="fa fa-save"></i> Save
                                 </button>
