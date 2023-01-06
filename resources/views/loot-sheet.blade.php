@@ -153,9 +153,9 @@
     }
     
     function getDpsColor(dps) {
-        if (dps >= 50) {
+        if (dps >= 500) {
             return 'text-success';
-        } else if (dps >= 20) {
+        } else if (dps >= 300) {
             return 'text-orange';
         } else {
             return 'text-secondary';
