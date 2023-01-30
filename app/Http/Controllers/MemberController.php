@@ -105,7 +105,7 @@ class MemberController extends Controller
         $data = $raidBots->getSimData(Arr::get($request, 'sim'));
         $jsonData = $raidBots->getSimDataFromJson(Arr::get($request, 'sim'));
         
-        if (strtolower(Arr::get($jsonData, 'simbot.player')) !== strtolower(Arr::get($member, 'name'))) {
+        if (strtolower(Arr::get($jsonData, 'simbot.player')) !== explode(' ', strtolower(Arr::get($member, 'name')))[0]) {
             throw ValidationException::withMessages(['sim' => __('Sim does not match the name')]);
         }
         
