@@ -10,7 +10,7 @@ class Member extends Model
     use SoftDeletes;
     
     protected $fillable = [
-        'member_id', 'name', 'discriminator', 'wow_class_id', 'sim_link', 'last_sim_update'
+        'member_id', 'name', 'discriminator', 'wow_class_id', 'wow_specialization_id', 'sim_link', 'last_sim_update'
     ];
     
     /**
@@ -46,6 +46,11 @@ class Member extends Model
     public function wowClass()
     {
         return $this->belongsTo(WowClass::class);
+    }
+    
+    public function wowSpecialization()
+    {
+        return $this->belongsTo(WowSpecialization::class);
     }
     
     public function simResults()

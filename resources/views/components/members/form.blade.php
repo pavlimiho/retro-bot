@@ -17,6 +17,18 @@
     </div>
 </div>
 
+<div class="form-group row">
+    <label for="wow_specialization_id" class="col-sm-2 col-form-label">@lang('Class')</label>
+    <div class="col-sm-10">
+        <select class="form-control" name="wow_specialization_id">
+            <option value="">Select the specialization</option>
+            @foreach ($wowSpecializations as $specializations)
+            <option value="{{ Arr::get($specializations, 'id') }}" {{ $isSelectedSpecialization(Arr::get($specializations, 'id')) ? 'selected="selected"' : '' }}>{{ Arr::get($specializations, 'name') }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
 <button type="submit" class="btn btn-success pull-right">
     <i class="fa fa-save"></i> Save
 </button>

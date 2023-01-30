@@ -16,6 +16,7 @@
                     <tr>
                         <th>{{ __('Name') }}</th>
                         <th>{{ __('Class') }}</th>
+                        <th>{{ __('Specialization') }}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -26,6 +27,7 @@
                         <td>
                             <span class="badge border" style="background-color: {{ Arr::get($member, 'wowClass.color') }}">{{ Arr::get($member, 'wowClass.name') }}</span>
                         </td>
+                        <td>{{ Arr::get($member, 'wowSpecialization.name') }}</td>
                         <td class="text-right">
                             <a href="{{ route('members.edit', $member) }}" class="btn btn-warning">
                                 <i class="fa fa-edit"></i>
